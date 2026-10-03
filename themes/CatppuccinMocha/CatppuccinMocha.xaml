@@ -1,0 +1,439 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+    xmlns:m="clr-namespace:ModernWpf.Markup;assembly=modernwpf"
+    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <!--  Dark base  -->
+    <!--  Keep this line, and change depending on if Light or Dark theme; case sensitive  -->
+
+    <!--
+        Catppuccin Mocha for One Commander
+        Theme Author: Laurin
+        Based on the structure of the bundled Dark theme by Milos Paripovic.
+
+        Palette: https://github.com/catppuccin/catppuccin
+        MIT License, Copyright (c) 2021 Catppuccin
+
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+
+        Design rules: Catppuccin colors only, square corners, one edge treatment per element
+        (1px Overlay borders, no drop shadows), every text pairing at least 4.5:1.
+
+        Pressing Ctrl+Shift+Alt+F5 reloads the theme; some keys need a restart.
+    -->
+
+    <Thickness x:Key="WindowPadding">1,1,0,1</Thickness>
+    <Thickness x:Key="WindowPaddingMaximized">0,-2,0,0</Thickness>
+
+    <SolidColorBrush x:Key="WindowBorderBrush" Color="#45475a" />
+    <Thickness x:Key="WindowBorderThickness">1</Thickness>
+    <SolidColorBrush x:Key="WindowAcrylicTintBrush" Color="#D611111b" />
+
+    <SolidColorBrush x:Key="MainBackgroundBrush" Color="#11111b" />
+    <SolidColorBrush x:Key="DialogBackgroundBrush" Color="#313244" />
+    <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="PathEditPopupBackgroundBrush" Color="#313244" />
+
+    <!--  Overrides the user accent color; Blue is the Catppuccin role for links and tags  -->
+    <SolidColorBrush x:Key="AccentBrushForced" Color="#89b4fa" />
+
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="#cdd6f4" />
+
+    <Style x:Key="{x:Type TextBlock}" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+    </Style>
+
+    <SolidColorBrush x:Key="TextImportantBrush" Color="#cba6f7" />
+    <SolidColorBrush x:Key="TextUnimportantBrush" Color="#a6adc8" />
+    <SolidColorBrush x:Key="TextBackgroundOverlayBrush" Color="#BE1e1e2e" />
+
+
+    <!--  Sidebar - Favorites  -->
+
+    <Thickness x:Key="FavoritesPanelMargin">0,1,8,0</Thickness>
+    <s:Double x:Key="SidebarCollapsedWidth">38</s:Double>
+
+    <Style x:Key="PathPanelGroupBorder" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="#181825" />
+        <Setter Property="BorderBrush" Value="#313244" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="12,0,12,12" />
+        <Setter Property="Padding" Value="8,8,8,8" />
+        <Setter Property="CornerRadius" Value="0" />
+    </Style>
+
+    <Style x:Key="PathPanelGroupTitle" TargetType="{x:Type TextBlock}">
+        <Setter Property="Margin" Value="4,-6,0,0" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Foreground" Value="#bac2de" />
+    </Style>
+
+    <SolidColorBrush x:Key="PathPanelItemBackgroundBrush" Color="#181825" />
+
+
+    <!--  File Browser Panel  -->
+
+    <SolidColorBrush x:Key="CurrentFolderPanelBackgroundBrush" Color="#1e1e2e" />
+    <SolidColorBrush x:Key="NavigationPanelBackgroundBrush.StandardLayout" Color="#1e1e2e" />
+    <SolidColorBrush x:Key="NavigationPanelBackgroundBrush.ColumnsLayout" Color="#1e1e2e" />
+
+    <Style x:Key="FilesPanelBorder" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="#1e1e2e" />
+    </Style>
+
+    <!--  Accent line on the right of the current Files Panel; the gradient fake shadow is dropped  -->
+    <Style x:Key="FilesPanelEdgeBorder" TargetType="{x:Type Border}">
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="BorderThickness" Value="0,0,2,0" />
+        <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Width" Value="2" />
+    </Style>
+
+    <Style x:Key="FilesPanelEdgeTopBorder" TargetType="{x:Type Border}">
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Height" Value="6" />
+        <Setter Property="Background" Value="#1e1e2e" />
+    </Style>
+
+    <s:Double x:Key="FilesPanelTitleHeight">30</s:Double>
+    <Thickness x:Key="FilesPanelSortControlMargin">0,32,0,0</Thickness>
+    <Thickness x:Key="FilesPanelContentMargin">0,54,0,0</Thickness>
+
+    <Style x:Key="FilesPanelTitle" TargetType="{x:Type TextBlock}">
+        <Setter Property="Margin" Value="10,2,0,0" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="#cdd6f4" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource AccentBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="FilesPanelPathSeparator" TargetType="{x:Type TextBlock}">
+        <Setter Property="Text" Value="\" />
+        <Setter Property="Margin" Value="0,2,0,0" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="Foreground" Value="{DynamicResource TextUnimportantBrush}" />
+    </Style>
+
+    <Style x:Key="PreviewPanelBorder" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="#1e1e2e" />
+    </Style>
+    <Style x:Key="PreviewPanelBorder.ColumnsLayout" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="#1e1e2e" />
+    </Style>
+    <s:Double x:Key="PreviewPanelMinHeight">28</s:Double>
+
+    <!--  New Folder, New File, Rename... popups: hairline border instead of a shadow  -->
+    <Style x:Key="PopupPanelBorder" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="#313244" />
+        <Setter Property="BorderBrush" Value="#6c7086" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+
+
+    <!--  Files and folders within Files Panels  -->
+
+    <Thickness x:Key="ListItemMargin">8,0,0,0</Thickness>
+
+    <SolidColorBrush x:Key="ListItemEvenBackgroundBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="ListItemOddBackgroundBrush" Color="#80181825" />
+
+    <SolidColorBrush x:Key="ListItemToDoBackgroundBrush" Color="#CCf9e2af" />
+    <SolidColorBrush x:Key="ListItemToDoDoneBackgroundBrush" Color="#CCa6e3a1" />
+    <SolidColorBrush x:Key="ListItemToDoForegroundBrush" Color="#1e1e2e" />
+
+    <!--  Hover, selected, selected + hover, selected + pressed  -->
+    <SolidColorBrush x:Key="SystemControlHighlightListLowBrush" Color="#313244" />
+    <SolidColorBrush x:Key="SystemControlHighlightListAccentLowBrush" Color="#4089b4fa" />
+    <SolidColorBrush x:Key="SystemControlHighlightListAccentMediumBrush" Color="#5989b4fa" />
+    <SolidColorBrush x:Key="SystemControlHighlightListAccentHighBrush" Color="#5989b4fa" />
+
+    <!--  Shadows are switched off (ShadowDepth and Opacity 0)  -->
+    <DropShadowEffect
+        x:Key="HoverItemEffect"
+        BlurRadius="0"
+        Opacity="0"
+        ShadowDepth="0"
+        Color="#11111b" />
+    <DropShadowEffect
+        x:Key="PopupShadowEffect"
+        BlurRadius="0"
+        Opacity="0"
+        ShadowDepth="0"
+        Color="#11111b" />
+    <Thickness x:Key="ShadowThickness">20,10,20,30</Thickness>
+
+    <Style x:Key="ContextMenuBorder" TargetType="Border">
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#6c7086" />
+        <Setter Property="Background" Value="{DynamicResource DialogBackgroundBrush}" />
+        <Setter Property="Padding" Value="0,4,0,4" />
+        <Setter Property="CornerRadius" Value="0" />
+    </Style>
+
+    <Style x:Key="ItemSelectionBorder" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="0" />
+    </Style>
+
+    <Style x:Key="FolderItemDefaultBorder" TargetType="{x:Type Border}">
+        <!--  Background must be defined, even transparent, for drag and drop to work  -->
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <!--  Folder selected in an ancestor (non-current) Files Panel  -->
+    <Style x:Key="FolderItemSelectedBorder" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="BorderThickness" Value="2,2,0,2" />
+        <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+        <Setter Property="Margin" Value="0,0,-2,0" />
+        <Setter Property="Background" Value="#B01e1e2e" />
+    </Style>
+
+    <Style x:Key="FolderItemSelectedInCurrentBorder" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+
+    <!--  Tabs  -->
+
+    <Style x:Key="ProgramNameBorder" TargetType="{x:Type Border}">
+        <Setter Property="Height" Value="33" />
+        <Setter Property="Margin" Value="13,0,27,0" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style x:Key="TabsContainerBorder" TargetType="{x:Type Border}">
+        <Setter Property="Height" Value="34" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="Padding" Value="0,0,0,0" />
+    </Style>
+
+    <Thickness x:Key="TabItemPadding">6,0,6,0</Thickness>
+
+    <Style x:Key="TabItemDefaultBorder" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="Background" Value="#181825" />
+        <Setter Property="Padding" Value="0,0,0,0" />
+        <Setter Property="Margin" Value="0,2,2,0" />
+    </Style>
+
+    <Style x:Key="TabItemHoverBorder" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="Background" Value="#313244" />
+        <Setter Property="Padding" Value="0,2,0,0" />
+        <Setter Property="Margin" Value="0,2,0,0" />
+    </Style>
+
+    <!--  Same as FilesPanelBorder so the active tab merges into its panel  -->
+    <Style x:Key="TabItemSelectedBorder" TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="Padding" Value="0,0,2,0" />
+        <Setter Property="Margin" Value="0,2,2,0" />
+        <Setter Property="Background" Value="#1e1e2e" />
+    </Style>
+
+    <Style x:Key="TabsBottomBarBorder" TargetType="{x:Type Border}">
+        <Setter Property="Margin" Value="0,0,0,0" />
+    </Style>
+
+
+    <!--  Message panel  -->
+
+    <Style x:Key="MessagePanelBorder" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="#181825" />
+    </Style>
+    <SolidColorBrush x:Key="MessageSuccessBackgroundBrush" Color="#4Da6e3a1" />
+    <SolidColorBrush x:Key="MessageErrorBackgroundBrush" Color="#4Df38ba8" />
+    <SolidColorBrush x:Key="MessageInfoBackgroundBrush" Color="Transparent" />
+
+
+    <!--  Other  -->
+
+    <SolidColorBrush x:Key="ScrollBarTrackBrush" Color="#80181825" />
+    <SolidColorBrush x:Key="ScrollBarThumbBrush" Color="#7f849c" />
+    <SolidColorBrush x:Key="ScrollBarThumbHoverBrush" Color="#9399b2" />
+    <SolidColorBrush x:Key="ScrollBarThumbPressedBrush" Color="#a6adc8" />
+
+    <!--  Background overlay when a popup is open  -->
+    <SolidColorBrush
+        x:Key="OverlayBrush"
+        Opacity=".15"
+        Color="#cdd6f4" />
+
+    <!--  Flash item or right-click  -->
+    <SolidColorBrush x:Key="FlashBrush" Color="#b4befe" />
+
+    <SolidColorBrush
+        x:Key="OverlayInactiveBrowserBrush"
+        Opacity=".25"
+        Color="#11111b" />
+
+    <SolidColorBrush
+        x:Key="OverlayCollapsingBrowserBrush"
+        Opacity=".84"
+        Color="#1e1e2e" />
+
+    <SolidColorBrush x:Key="ResizerBrush" Color="#181825" />
+    <SolidColorBrush x:Key="ResizerHoverBrush" Color="#45475a" />
+
+    <Style x:Key="ResizerBorderBase" TargetType="{x:Type Border}">
+        <Setter Property="BorderBrush" Value="{DynamicResource ResizerBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="MinWidth" Value="6" />
+        <Setter Property="MinHeight" Value="6" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="{DynamicResource ResizerHoverBrush}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style
+        x:Key="BrowserDividerVerticalBorder"
+        BasedOn="{StaticResource ResizerBorderBase}"
+        TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="1,0,1,0" />
+        <Setter Property="Margin" Value="-1,34,-1,0" />
+    </Style>
+    <Style
+        x:Key="BrowserDividerHorizontalBorder"
+        BasedOn="{StaticResource ResizerBorderBase}"
+        TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="0,1,0,0" />
+    </Style>
+    <Style
+        x:Key="SidebarResizerBorder"
+        BasedOn="{StaticResource ResizerBorderBase}"
+        TargetType="{x:Type Border}">
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="BorderThickness" Value="0,0,8,0" />
+        <Setter Property="Margin" Value="0,34,0,0" />
+    </Style>
+    <Style
+        x:Key="NavigationPanelResizerBorder"
+        BasedOn="{StaticResource ResizerBorderBase}"
+        TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="0,1,0,0" />
+    </Style>
+    <Style
+        x:Key="PreviewResizerHorizontalBorder"
+        BasedOn="{StaticResource ResizerBorderBase}"
+        TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="0,1,0,0" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+    </Style>
+    <Style
+        x:Key="PreviewResizerVerticalBorder"
+        BasedOn="{StaticResource ResizerBorderBase}"
+        TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="1,0,0,0" />
+        <Setter Property="Margin" Value="0,-2,0,0" />
+    </Style>
+    <Style
+        x:Key="FileDetailsResizerHorizontalBorder"
+        BasedOn="{StaticResource ResizerBorderBase}"
+        TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="0,1,0,0" />
+        <Setter Property="Height" Value="8" />
+    </Style>
+    <Style
+        x:Key="FileDetailsResizerVerticalBorder"
+        BasedOn="{StaticResource ResizerBorderBase}"
+        TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="1,0,0,0" />
+        <Setter Property="Width" Value="8" />
+    </Style>
+
+    <s:Boolean x:Key="UseCustomUIElements">True</s:Boolean>
+    <CornerRadius x:Key="UICornerRadius">0</CornerRadius>
+
+    <SolidColorBrush x:Key="TooltipBackgroundBrush" Color="#45475a" />
+
+    <!--  Line indicating Files Panel has been scrolled  -->
+    <SolidColorBrush x:Key="BrushDimGraphics" Color="#45475a" />
+
+    <!--  Sort arrows  -->
+    <SolidColorBrush x:Key="ToggleOnBrush" Color="#cdd6f4" />
+    <SolidColorBrush x:Key="ToggleOffBrush" Color="#7f849c" />
+
+    <SolidColorBrush x:Key="CaretBrush" Color="#f5e0dc" />
+
+    <!--  Button backgrounds MUST NEVER be Transparent, or the window may fail to restore from minimized  -->
+    <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#181825" />
+    <SolidColorBrush x:Key="IconButtonBackgroundBrush" Color="#181825" />
+
+    <SolidColorBrush x:Key="ButtonBackgroundPointerOverBrush" Color="#313244" />
+    <SolidColorBrush x:Key="ButtonBackgroundPressedBrush" Color="#45475a" />
+    <SolidColorBrush x:Key="ButtonBackgroundDisabledBrush" Color="#181825" />
+
+    <SolidColorBrush x:Key="ButtonForegroundBrush" Color="#cdd6f4" />
+    <SolidColorBrush x:Key="ButtonForegroundPointerOverBrush" Color="#cdd6f4" />
+    <SolidColorBrush x:Key="ButtonForegroundPressedBrush" Color="#cdd6f4" />
+    <SolidColorBrush x:Key="ButtonForegroundDisabledBrush" Color="#7f849c" />
+
+    <SolidColorBrush x:Key="ButtonBorderBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="ButtonBorderPointerOverBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="ButtonBorderPressedBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="ButtonBorderDisabledBrush" Color="Transparent" />
+
+    <Thickness x:Key="ButtonBorderThickness">0</Thickness>
+    <Thickness x:Key="ButtonPadding">4,0,4,0</Thickness>
+    <s:Double x:Key="ButtonMinSize">28</s:Double>
+
+    <Style x:Key="ScrollIndicatorLine" TargetType="{x:Type Line}">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Stretch" Value="Fill" />
+        <Setter Property="StrokeThickness" Value="8" />
+        <Setter Property="X2" Value="1" />
+        <Setter Property="OpacityMask">
+            <Setter.Value>
+                <LinearGradientBrush MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Offset="0" Color="#00000000" />
+                    <GradientStop Offset="0.2" Color="#ffffffff" />
+                    <GradientStop Offset="0.8" Color="#ffffffff" />
+                    <GradientStop Offset="1" Color="#00000000" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <LinearGradientBrush x:Key="ScrollIndicatorTopBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#4411111b" />
+        <GradientStop Offset="1" Color="#0011111b" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ScrollIndicatorBottomBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="1" Color="#4411111b" />
+        <GradientStop Offset="0" Color="#0011111b" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="TagRedBrush" Color="#f38ba8" />
+    <SolidColorBrush x:Key="TagOrangeBrush" Color="#fab387" />
+    <SolidColorBrush x:Key="TagYellowBrush" Color="#f9e2af" />
+    <SolidColorBrush x:Key="TagGreenBrush" Color="#a6e3a1" />
+    <SolidColorBrush x:Key="TagBlueBrush" Color="#89b4fa" />
+    <SolidColorBrush x:Key="TagPurpleBrush" Color="#cba6f7" />
+    <SolidColorBrush x:Key="TagGrayBrush" Color="#7f849c" />
+
+</ResourceDictionary>
